@@ -11,8 +11,10 @@ function saveToDos(){
 }
 
 function deleteTodo(event){
-    const li = event.target.parentElement;
+    const li = event.target.parentElement;    
     li.remove();
+    toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));
+    saveToDos();
 }
 
 function paintToDo(newTodo){
@@ -34,7 +36,7 @@ function handleToDoSubmit(event){
     toDoInput.value = "";
     const newTodoObj = {
         text : newTodo,
-        id:Date.now(),
+        id : Date.now(),
     }
     toDos.push(newTodoObj);
     paintToDo(newTodoObj);
